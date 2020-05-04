@@ -1,0 +1,7 @@
+tensorflow==2.0.0
+torch
+opencv-python
+scikit-image
+PyYAML
+tqdm
+Pillow
