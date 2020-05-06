@@ -1,6 +1,6 @@
 from absl import app, flags, logging
 from absl.flags import FLAGS
-from cv2 import cv2
+import cv2
 import os
 import numpy as np
 import tensorflow as tf
@@ -92,8 +92,10 @@ def main(_):
     # training loop
     summary_writer = tf.summary.create_file_writer(
         './logs/' + cfg['sub_name'])
-    prog_bar = ProgressBar(cfg['niter'], checkpoint.step.numpy())
-    remain_steps = max(cfg['niter'] - checkpoint.step.numpy(), 0)
+    niter = int(cfg['train_dataset']['num_samples'] * cfg['epoch'] / 
+        cfg['batch_size'])
+    prog_bar = ProgressBar(niter, checkpoint.step.numpy())
+    remain_steps = max(niter - checkpoint.step.numpy(), 0)
 
 
     for sample in take(remain_steps, train_dataset):

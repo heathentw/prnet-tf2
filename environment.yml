@@ -1,4 +1,5 @@
 name: prnet-tf2
+
 channels:
   - conda-forge
 
@@ -13,3 +14,4 @@ dependencies:
     - PyYAML
     - tqdm
     - Pillow
+    - dlib

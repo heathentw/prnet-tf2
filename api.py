@@ -10,7 +10,7 @@ from skimage.transform import estimate_transform, warp
 from time import time
 import importlib
 
-from modules.utils import plot_kpt
+from modules.cv_plot import plot_kpt
 from modules.models import PosPrediction
 
 

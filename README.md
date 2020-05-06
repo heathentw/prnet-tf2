@@ -12,13 +12,10 @@ Offical Implementation: &nbsp; [PyTorch](https://github.com/YadiraF/PRNet)
 ****
 
 ## Contents
-:bookmark_tabs:
 
 * [Installation](#Installation)
-* [Data Preparing](#Data-Preparing)
-* [Training and Testing](#Training-and-Testing)
-* [Benchmark](#Benchmark)
-* [Models](#Models)
+* [Training](#Training)
+* [Testing](#Testing)
 * [References](#References)
 
 
@@ -47,9 +44,9 @@ pip install -r requirements.txt
 
 ****
 
-## Data Preparing
+## Training
 
-The implementation use [300W-LP](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm) as training data, same as in the original paper. You can download the data-set and generate the position-maps with the [code](https://github.com/YadiraF/face3d/blob/master/examples/8_generate_posmap_300WLP.py) provided by the author, or [download]() the generated data-set.
+The training implementation use [300W-LP](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm) as training data, same as in the original paper. You can download the data-set and generate the position-maps with the [code](https://github.com/YadiraF/face3d/blob/master/examples/8_generate_posmap_300WLP.py) provided by the author, or download the generated [data-set](https://drive.google.com/open?id=1SCMfQ7Xs3BRgRxs62g_J1dMJkdNi0R52).
 
 Arrange the data-set folders as follow:
 ```bash
@@ -70,11 +67,6 @@ Arrange the data-set folders as follow:
 
 
 
-
-****
-
-## Training and Testing
-
 You can modify your own dataset path or other settings of model in [./configs/*.yaml](https://github.com/peteryuX/esrgan-tf2/tree/master/configs) for training and testing, which like below.
 
 ```python
@@ -93,7 +85,7 @@ train_dataset:
     num_samples: 122450
 
 # training setting
-niter: 765312  # data len * epoch(=100) / batch
+epoch: 100
 
 lr_G: !!float 1e-4
 lr_steps: [100000, 200000, 300000, 400000]
@@ -112,16 +104,16 @@ Note:
 - The `sub_name` is the name of outputs directory used in checkpoints and logs folder. (make sure of setting it unique to other models)
 - The `save_steps` is the number interval steps of saving checkpoint file.
 
-### Training
+#### Run training
 
 ```bash
 python train.py --cfg_path ./configs/prnet.yaml --gpu 0
 ```
 
 
-### Testing
+## Testing
 
-For testing PRNet, here only implement the application of "Sparse alignment", "Dense alignment" and "Pose estimation". Trained model can be download [here](https://drive.google.com/open?id=1qvSujao8d4LKrbnxildsqOiGRxnmzalR), please extract it into `./checkpoints`.
+For testing PRNet, here only implement the application of "Sparse alignment", "Dense alignment" and "Pose estimation". Trained model can be download [here](https://drive.google.com/open?id=14xWln1uqP13zxtUJ6B_aisYwWGdq53tP), please extract it into `./checkpoints`.
 
 #### 1. Test on image
 ```bash

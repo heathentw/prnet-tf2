@@ -9,11 +9,11 @@ pretrain_name:
 # dataset setting
 train_dataset:
     name: '300WLP'
-    path: '/media/ray_wu/Ubuntu_disk/datasets/posmap'
+    path: '/mnt/1TB/posmap'
     num_samples: 122450
 
 # training setting
-niter: 765312  # data len * 100 / batch
+epoch: 100
 
 lr_G: !!float 1e-4
 lr_steps: [100000, 200000, 300000, 400000]
